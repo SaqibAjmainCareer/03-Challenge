@@ -13,7 +13,7 @@ function getPassOptions() {
   var charTypes = [];
 
   var length = prompt('How many characters would you like your random password to be? (8-128)');
-  console.log(length);
+  // console.log(length);
   if (isNaN(length)) {
     alert('Please enter a valid number between 8 and 128');
     return null;
@@ -94,11 +94,16 @@ function generatePassword() {
   if (options.hasSpecial) {
     charPool.push(...specials);    
   }
-  console.log(charPool);
+  // console.log(charPool);
 
-  finalPass = charPool.join('');
+  for (var i = 0; i < options.length; i++) {
+    finalPass.push(getRandom(charPool));
+    // console.log(finalPass);
+  }
 
-  return finalPass;
+
+
+  return finalPass.join('');
 }
 
 // Write password to the #password input
@@ -108,7 +113,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.textContent = password;
+  passwordText.value = password;
 
 }
 
